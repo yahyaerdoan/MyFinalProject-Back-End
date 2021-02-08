@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="obj\Debug\netstandard2.0\.NETStandard,Version=v2.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\netstandard2.0\DataAccess.AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\netstandard2.0\DataAccess.deps.json" />
+    <Content Include="obj\DataAccess.csproj.nuget.dgspec.json" />
+    <Content Include="obj\Debug\netstandard2.0\DataAccess.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\project.assets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\netstandard2.0\DataAccess.dll" />
+    <None Include="bin\Debug\netstandard2.0\DataAccess.pdb" />
+    <None Include="bin\Debug\netstandard2.0\Entities.dll" />
+    <None Include="bin\Debug\netstandard2.0\Entities.pdb" />
+    <None Include="obj\DataAccess.csproj.nuget.g.props" />
+    <None Include="obj\DataAccess.csproj.nuget.g.targets" />
+    <None Include="obj\Debug\netstandard2.0\DataAccess.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\netstandard2.0\DataAccess.assets.cache" />
+    <None Include="obj\Debug\netstandard2.0\DataAccess.csproj.CopyComplete" />
+    <None Include="obj\Debug\netstandard2.0\DataAccess.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\netstandard2.0\DataAccess.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\netstandard2.0\DataAccess.dll" />
+    <None Include="obj\Debug\netstandard2.0\DataAccess.pdb" />
+    <None Include="obj\project.nuget.cache" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Entities\Entities.csproj" />
+  </ItemGroup>
+
+</Project>
