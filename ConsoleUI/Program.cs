@@ -30,16 +30,29 @@ namespace ConsoleUI
         private static void ProductTest()
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
-            foreach (var product in productManager.GetProductDetailDtos())
+
+            var result = productManager.GetProductDetailDtos();
+            if (result.Success == true)
             {
-                Console.WriteLine("\n" + product.ProductId + " - " + product.ProductName + " - " + product.CategoryName + "\n");
+                foreach (var product in result.Data)
+                {
+                    Console.WriteLine("\n" + product.ProductId + " - " + product.ProductName + " - " + product.CategoryName + "\n");
+
+                }
+
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
+            
         }
 
         private static void LinqMetod()
         {
             ProductManager productManager2 = new ProductManager(new EfProductDal());
-            foreach (var product in productManager2.GetAllByCategoryId(7))
+            foreach (var product in productManager2.GetAllByCategoryId(7).Data)
             {
                 Console.WriteLine(product.ProductId + " -- " + product.ProductName);
             }
@@ -48,7 +61,7 @@ namespace ConsoleUI
         private static void InMemoryOrnek()
         {
             ProductManager productManager1 = new ProductManager(new InMemoryProductDal());
-            foreach (var product in productManager1.GetAll())
+            foreach (var product in productManager1.GetAll().Data)
             {
                 Console.WriteLine(product.ProductName);
             }
