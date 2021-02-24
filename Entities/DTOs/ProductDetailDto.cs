@@ -14,3 +14,6 @@ namespace Entities.DTOs
 
     }
 }
+//Dto: Data Transformation Object (Veri Dönüştürme Nesnesi) temel amacı veri tabanı ile bağ kurup verileri işleyebilmemize olanak sağlar.
+//Entities Katmanında bulunan DTO'nun adı (Nesne)DetailDto dur. DataBaseContext'ten verileri çekip birleştirip yönetebilmek için Join işlemine ihtiyaç duyarız. Ortak verilerimizede  (Nesne)DetailDto Classı üzerinden erişebiliriz.
+//Core katmanı Entitien klasöründe bulunan IDto ise IEntity gibi gibi İmplemente eden interface classtır. Evrensellik kazandırır.

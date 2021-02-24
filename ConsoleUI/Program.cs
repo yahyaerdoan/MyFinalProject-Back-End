@@ -12,7 +12,7 @@ namespace ConsoleUI
             ProductTest();
             //LinqMetod();
             //InMemoryOrnek();
-            //CategoryTest();
+            CategoryTest();
 
 
 
@@ -21,7 +21,7 @@ namespace ConsoleUI
         private static void CategoryTest()
         {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-            foreach (var category in categoryManager.GetAll())
+            foreach (var category in categoryManager.GetAll().Data)
             {
                 Console.WriteLine(category.CategoryName + "  " + category.CategoryId);
             }
@@ -29,7 +29,7 @@ namespace ConsoleUI
 
         private static void ProductTest()
         {
-            ProductManager productManager = new ProductManager(new EfProductDal());
+            ProductManager productManager = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
 
             var result = productManager.GetProductDetailDtos();
             if (result.Success == true)
@@ -51,7 +51,7 @@ namespace ConsoleUI
 
         private static void LinqMetod()
         {
-            ProductManager productManager2 = new ProductManager(new EfProductDal());
+            ProductManager productManager2 = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
             foreach (var product in productManager2.GetAllByCategoryId(7).Data)
             {
                 Console.WriteLine(product.ProductId + " -- " + product.ProductName);
@@ -60,7 +60,7 @@ namespace ConsoleUI
 
         private static void InMemoryOrnek()
         {
-            ProductManager productManager1 = new ProductManager(new InMemoryProductDal());
+            ProductManager productManager1 = new ProductManager(new InMemoryProductDal(), new CategoryManager(new EfCategoryDal()));
             foreach (var product in productManager1.GetAll().Data)
             {
                 Console.WriteLine(product.ProductName);
