@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -27,7 +28,7 @@ namespace Business.Concrete
             _productDal = productDal;
             _categoryService = categoryService;
         }
-
+        [SecuredOperation("product.add")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
@@ -48,10 +49,10 @@ namespace Business.Concrete
             //        _productDal.Add(product);
             //        return new SuccessResult(Messages.ProductAdded);
             //    }
-                
+
             //}
             //return new ErrorResult();
-           
+
         }
 
         public IDataResult<List<Product>> GetAll()
@@ -80,10 +81,10 @@ namespace Business.Concrete
 
         public IDataResult<List<ProductDetailDto>> GetProductDetailDtos()
         {
-            //if (DateTime.Now.Hour == 00)
-            //{
-            //    return new ErrorDataResult<List<ProductDetailDto>>(Messages.MaintenanceTime);
-            //}
+            if (DateTime.Now.Hour ==03)
+            {
+                return new ErrorDataResult<List<ProductDetailDto>>(Messages.MaintenanceTime);
+            }
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetailDtos());
         }
         [ValidationAspect(typeof(ProductValidator))]
@@ -96,7 +97,7 @@ namespace Business.Concrete
         {
             //Bir kategoride en fazla 10 ürün olabilir.
             var result = _productDal.GetAll(p => p.CategoryId == categoryId).Count;
-            if (result >= 10)
+            if (result >= 100)
             {
                 return new ErrorResult(Messages.ProductCountOfCategoryError);
             }
@@ -115,6 +116,7 @@ namespace Business.Concrete
         }  
         private IResult CheckIfCategoryLimitExceded()
         {
+            //15'ten fazla ürün eklenemz.
             var result = _categoryService.GetAll();
             if (result.Data.Count>15)
             {
