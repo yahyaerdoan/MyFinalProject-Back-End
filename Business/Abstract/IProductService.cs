@@ -17,6 +17,8 @@ namespace Business.Abstract
         IResult Add(Product product); // IResult'ı voidler için yazdık burda döndürme işlemi yok DATA OLMADIĞI İÇİN 
         IResult Update(Product product);
 
+        IResult TransactionalOperation(Product product);
+
 
     }
 }
