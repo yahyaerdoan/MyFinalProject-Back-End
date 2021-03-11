@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
@@ -28,12 +29,13 @@ namespace WebAPI.Controllers
 
         [HttpGet ("GetAll")]
         public IActionResult GetAll() 
-        {  
+        {
             //Swagger = Test ortmı
             // Dependency Chain = Sistem bağımlılığı  / Bağımlılık zinciri
             // Burada bir bağımlılık vardır. Servis Manegare bağımlıdır. Idal EfDala bağımlı
             //IProductService productService = new ProductManager(new EfProductDal());
-            
+
+            Thread.Sleep(1000);
             var result = _productService.GetAll();
             if (result.Success)
             {
